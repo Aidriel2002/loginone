@@ -1,0 +1,83 @@
+
+.sform-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 397px;
+    height: 510px;
+    padding: 10px;
+  }
+  
+  .scaption {
+    margin-bottom: 20px;
+    text-align: left;
+    margin-left: 4px;
+  }
+  .semail-box,.spw-box,
+  .name {
+    border-radius: 6px;
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 330px;
+    background: white;
+    border: 1px solid lightgray;
+    height: 22px;
+    line-height: 16px;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+  
+  .signUp {
+    text-align: left;
+      margin-bottom: 5px;
+      font-size: 2.0rem;
+      font-weight: 400;
+      margin-left: 4px;
+  }
+  
+  
+  .signup-button {
+    background-color: #981978;
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
+    color: white;
+    line-height: 48px;
+    padding: 0 16px;
+    width: 364px;
+    vertical-align: middle;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  
+  .signup-button:hover {
+    background-color: #8b2772;
+    cursor: pointer;
+  }
+ 
+  .loginForm .inputBoxs{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .loginForm .inputBoxs span{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 13px 17px;
+    pointer-events: none;
+    transition: 0.5s;
+    color:gray;
+    
+    
+  }
+  .loginForm .inputBoxs input:focus ~ span,
+  .loginForm .inputBoxs input:valid ~ span
+  {
+    color: rgb(19, 19, 19);
+    font-size: 12px;
+    transform: translateY(-19px);
+    background-color: white;
+    padding: 1px;
+  }
