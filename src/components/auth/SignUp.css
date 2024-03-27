@@ -26,6 +26,12 @@
     vertical-align: middle;
     margin-bottom: 10px;
   }
+
+  .semail-box:focus,
+.spw-box:focus,.name:focus {
+  outline: 1px solid #3a168f;
+  outline-offset: -2px;
+}
   
   .signUp {
     text-align: left;
@@ -37,7 +43,7 @@
   
   
   .signup-button {
-    background-color: #981978;
+    background-color: #210368;
     border: none;
     border-radius: 6px;
     font-size: 20px;
@@ -51,7 +57,7 @@
   }
   
   .signup-button:hover {
-    background-color: #8b2772;
+    background-color: #3a168f;
     cursor: pointer;
   }
  
@@ -81,3 +87,4 @@
     background-color: white;
     padding: 1px;
   }
+

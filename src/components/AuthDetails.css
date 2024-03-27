@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
 }
+
 body {
   width: 100%;
 }
@@ -10,7 +11,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #521A7A;
+    background-color: #210368;
     width: 100%;
   }
   .user-right {
@@ -59,14 +60,29 @@ body {
   
   .authName {
     color: white;
+    font-weight: 500;
   }
   .greet {
     margin: 15%;
     font-size: 60px;
   }
   p span{
-    color: #521A7A;
+    color: #3a168f;
     font-weight: bold;
   }
 
+  
+  h2 {
+    color: #fff;
+  }
+.navbtn {
+  display: flex;
+
+}
+  .navbtn p {
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 0 20px;
+  }
   

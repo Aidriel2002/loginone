@@ -52,72 +52,70 @@ const SignUp = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const userEmail = email;
+  e.preventDefault();
+  const userEmail = email;
 
   if (password !== confirmPassword) {
     setMessage("Password do not match.");
-      const errorMessageElement = document.getElementById("screated");
-      errorMessageElement.style.color = "red";
-      errorMessageElement.style.padding = "5px 40px";
+    const errorMessageElement = document.getElementById("screated");
+    errorMessageElement.style.color = "red";
+    errorMessageElement.style.padding = "5px 40px";
     return;
   }
-  if (password.length < 8 ) {
+  if (password.length < 8) {
     setMessage("Passwords must have at least 8 characters.");
-      const errorMessageElement = document.getElementById("screated");
-      errorMessageElement.style.color = "red";
-      errorMessageElement.style.padding = "5px 40px";
+    const errorMessageElement = document.getElementById("screated");
+    errorMessageElement.style.color = "red";
+    errorMessageElement.style.padding = "5px 40px";
     return;
   }
 
   const isNameValid = validateName(name);
   const isLastNameValid = validateName(lastName);
 
-
   if (!isNameValid || !isLastNameValid) {
     return;
   }
 
-  
   createUserWithEmailAndPassword(auth, userEmail, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    updateProfile(user, {
-      displayName: name, 
-    })
-      .then(() => {
-        resetForm();
-        setMessage("Account successfully created.");
-        const errorMessageElement = document.getElementById("screated");
-        errorMessageElement.style.color = "green";
-        errorMessageElement.style.padding = "5px 40px";
-        console.log('name', name);
-        history("/");
+    .then((userCredential) => {
+      const user = userCredential.user;
+      updateProfile(user, {
+        displayName: name,
       })
-      .catch((updateProfileError) => {
-        console.error("Error updating profile:", updateProfileError);
+        .then(() => {
+          resetForm();
+          setMessage("Account successfully created.");
+          const errorMessageElement = document.getElementById("screated");
+          errorMessageElement.style.color = "green";
+          errorMessageElement.style.padding = "5px 40px";
+          console.log('name', name);
+          history("/");
+        })
+        .catch((updateProfileError) => {
+          console.error("Error updating profile:", updateProfileError);
+          setMessage("An error occurred. Please try again.");
+          const errorMessageElement = document.getElementById("screated");
+          errorMessageElement.style.color = "red";
+          errorMessageElement.style.padding = "5px 40px";
+        });
+    })
+    .catch((err) => {
+      if (err.code === "auth/invalid-email") {
+        setMessage("Invalid Email.");
+      } else if (err.code === "auth/email-already-in-use") {
+        setMessage("Email already in use.");
+      } else {
         setMessage("An error occurred. Please try again.");
-        const errorMessageElement = document.getElementById("screated");
-        errorMessageElement.style.color = "red";
-        errorMessageElement.style.padding = "5px 40px";
-      });
-  })
-  .catch((err) => {
-    if (err.code === "auth/invalid-email") {
-      setMessage("Invalid Email.");
-    } else if (err.code === "auth/email-already-in-use") {
-      setMessage("Email already in use.");
-    } else {
-      setMessage("An error occurred. Please try again.");
-    }
+      }
 
-    const errorMessageElement = document.getElementById("screated");
-    errorMessageElement.style.color = "red";
-    errorMessageElement.style.padding = "5px 40px";
-    console.log(err);
-  });
+      const errorMessageElement = document.getElementById("screated");
+      errorMessageElement.style.color = "red";
+      errorMessageElement.style.padding = "5px 40px";
+      console.log(err);
+    });
+};
 
-  };
 
         return (
             <div className="sform-container">

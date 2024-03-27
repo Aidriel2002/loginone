@@ -53,12 +53,12 @@
 
 .email-box:focus,
 .pw-box:focus {
-  outline: 1px solid #981978;
+  outline: 1px solid #3a168f;
   outline-offset: -2px;
 }
 
 .login-button {
-  background-color: #981978;
+  background-color: #210368;
   border: none;
   border-radius: 4px;
   font-size: 20px;
@@ -71,7 +71,7 @@
 }
 
 .login-button:hover {
-  background-color: #8b2772;  
+  background-color: #3a168f;  
   cursor: pointer;
 }
 
@@ -81,7 +81,7 @@
 
 .adjust-forgot-pw {
   margin-left: 150px;
-  color: #981978;
+  color: #3a168f;
   font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
   font-size: 1.0rem;
   cursor: pointer;
@@ -95,13 +95,7 @@
   margin-bottom: 20px;
   margin-left: 10px;
 }
-.signup span {
-  color: #981978 ;
-  cursor: pointer;
-}
-.signup span:hover {
-  text-decoration: underline;
-}
+
 
 .form-container {
   border: none;
@@ -160,7 +154,7 @@
   margin-left: 10px;
   font-size: 3rem;
   font-weight: bold;
-  color: #981978;
+  color: #210368;
 }
 .caption {
   margin-left: 10px;

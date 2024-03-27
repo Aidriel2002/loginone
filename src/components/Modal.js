@@ -1,5 +1,3 @@
-// Modal.js
-
 import React from 'react';
 import './Modal.css'
 
@@ -12,6 +10,8 @@ const Modal = ({ onClose, children }) => {
         {children}
       </div>
     </div>
+
+    
   );
 };
 

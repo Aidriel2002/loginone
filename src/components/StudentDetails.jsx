@@ -2,31 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { auth } from './auth/firebase.js';
 import {signOut, onAuthStateChanged } from 'firebase/auth'; 
 import { useNavigate } from 'react-router-dom';
-import './AuthDetails.css';
-import Modal from './Modal.js';
-import SignUp from './auth/SignUp.jsx';
 
-const AuthDetails = () => {
+
+
+const StudentDetails = () => {
   const [displayName, setDisplayName] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useNavigate();
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
-  const openSignUpModal = () => {
-    setShowSignUpModal(true);
-  };
 
-  const closeSignUpModal = () => {
-    setShowSignUpModal(false);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    history('/');
-  };
-  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -60,13 +45,15 @@ const AuthDetails = () => {
       {authUser ? (
         <div className="user">
           <h2>DW System</h2>
-          <div className="navbtn">
-            <p>Students</p>
-            <p>Courses</p>
-            <p>Subjects</p>
-            <p onClick={openSignUpModal}>Add Student</p>
-          </div>       
           
+          <div className="navbtn">
+            <p>Evaluation</p>
+            <p>Registration</p>
+            <p>Account Subledger</p>
+            <p>Enlistment</p>
+            
+          </div>    
+
           <div className="user-right">
             <p className='authName'>{`${displayName}`}</p>
             <span className="dropdown-icon" onClick={toggleDropdown}>
@@ -78,28 +65,16 @@ const AuthDetails = () => {
               </div>
             )}
           </div>
-          
         </div>
       ) : (
-        <p>
-          
-        </p>
+        <p></p>
       )}
       
-      <p className='greet'>Admin<br/> Welcome <span>{` ${displayName}!`}</span></p>
-       <div className="modalss">
-          {showSignUpModal && (
-            <Modal onClose={closeSignUpModal}>
-              <SignUp />
-            </Modal>
-          )}
-          {showModal && (
-            <Modal onClose={closeModal}>
-            </Modal>
-          )}
-      </div>
+      <p className='greet'>Student<br/> Welcome <span>{` ${displayName}`}</span>!</p>
+ 
+
     </div>
   );
 };
 
-export default AuthDetails;
+export default StudentDetails;

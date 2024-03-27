@@ -4,7 +4,6 @@ import { auth } from "./firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
-import SignUp from './SignUp';
 import Modal from '../Modal.js';
 import ForgotPassword from "./ForgotPassword.js";
 import './SignIn.css'
@@ -15,7 +14,6 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
   const history = useNavigate();
@@ -23,15 +21,6 @@ const SignIn = () => {
   const onChange = (value) => {
     setIsCaptchaVerified(!!value);
   }; 
-
-  const openSignUpModal = () => {
-    setShowSignUpModal(true);
-  };
-  
-  const closeSignUpModal = () => {
-    setShowSignUpModal(false);
-  };
-
   const openModal = () => {
     setShowModal(true);
   };
@@ -40,29 +29,36 @@ const SignIn = () => {
     setShowModal(false);
     history("/");
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const userEmail = email;
-
+  
     if (!isCaptchaVerified) {
       setMessage("Please verify reCAPTCHA.");
       const errorMessageElement = document.getElementById("created");
-        errorMessageElement.style.color = "red";
+      errorMessageElement.style.color = "red";
       return;
     }
-
+  
     if (password.length < 8) {
       setMessage("Passwords must have at least 8 characters.");
       const errorMessageElement = document.getElementById("created");
       errorMessageElement.style.color = "red";
       return;
-    }  
-
+    }
+  
     signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
-        console.log(userCredential);
-        history('/home');
+        const user = userCredential.user;
+        if (user) {
+          console.log(userCredential);
+          if (user.email.toLowerCase() === 'dexterbasergo@gmail.com') {
+            history('/admin'); 
+          } else {
+            history('/student');
+          }
+        } 
       })
       .catch((error) => {
         setMessage("Invalid Email or Password.");
@@ -70,8 +66,8 @@ const SignIn = () => {
         errorMessageElement.style.color = "red";
         console.log(error);
       });
-
   };
+  
     
   return (
     <>
@@ -128,16 +124,12 @@ const SignIn = () => {
                 <div className="space">
                   <button type="submit"  className="login-button"><b>Log In</b></button>    
                 </div>
-                <p className="signup">Don't have an account? <span onClick={openSignUpModal}>Sign Up</span></p>
+  
               </form>
             </div>
             <p id="created">{message}</p>
           </div>
-          {showSignUpModal && (
-            <Modal onClose={closeSignUpModal}>
-              <SignUp />
-            </Modal>
-          )}
+        
           {showModal && (
             <Modal onClose={closeModal}>
               <ForgotPassword />
