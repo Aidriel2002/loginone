@@ -7,7 +7,6 @@ import Modal from './Modal.js';
 import SignUp from './auth/SignUp.jsx';
 
 const AuthDetails = () => {
-  const [displayName, setDisplayName] = useState(null);
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useNavigate();
@@ -31,10 +30,10 @@ const AuthDetails = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(user);
-        setDisplayName(user.displayName);
+
       } else {
         setAuthUser(null);
-        setDisplayName(null);
+
         setShowDropdown(false);
       }
     });
@@ -68,7 +67,7 @@ const AuthDetails = () => {
           </div>       
           
           <div className="user-right">
-            <p className='authName'>{`${displayName}`}</p>
+            <p className='authName'>Dexter</p>
             <span className="dropdown-icon" onClick={toggleDropdown}>
               &#9660;
             </span>
@@ -86,7 +85,7 @@ const AuthDetails = () => {
         </p>
       )}
       
-      <p className='greet'>Admin<br/> Welcome <span>{` ${displayName}!`}</span></p>
+      <p className='greet'>Admin<br/> Welcome <span>Dexter</span></p>
        <div className="modalss">
           {showSignUpModal && (
             <Modal onClose={closeSignUpModal}>

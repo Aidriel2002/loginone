@@ -1,7 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./firebase";
-import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './SignUp.css'
@@ -15,7 +14,6 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const history = useNavigate();
   const resetForm = () => {
     setName("");
     setLastName("");
@@ -89,8 +87,7 @@ const SignUp = () => {
           const errorMessageElement = document.getElementById("screated");
           errorMessageElement.style.color = "green";
           errorMessageElement.style.padding = "5px 40px";
-          console.log('name', name);
-          history("/");
+
         })
         .catch((updateProfileError) => {
           console.error("Error updating profile:", updateProfileError);
