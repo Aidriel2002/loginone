@@ -74,6 +74,7 @@ body {
   
   h2 {
     color: #fff;
+    cursor: pointer;
   }
 .navbtn {
   display: flex;
@@ -85,4 +86,5 @@ body {
     font-weight: 500;
     margin: 0 20px;
   }
+
   

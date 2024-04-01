@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import './AuthDetails.css';
 import Modal from './Modal.js';
 import SignUp from './auth/SignUp.jsx';
+import ForgotPassword from "./auth/ForgotPassword.js";
+import './StudentList.css'
 
-
-const AuthDetails = () => {
+const StudentList = () => {
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useNavigate();
@@ -16,6 +17,9 @@ const AuthDetails = () => {
 
   const openSignUpModal = () => {
     setShowSignUpModal(true);
+  };
+  const openModal = () => {
+    setShowModal(true);
   };
   const studentListTab = () => {
     history('/studentList');
@@ -30,7 +34,6 @@ const AuthDetails = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    history('/');
   };
   
   useEffect(() => {
@@ -92,7 +95,8 @@ const AuthDetails = () => {
         </p>
       )}
       
-      <p className='greet'>Admin<br/> Welcome <span>Dexter</span></p>
+      <h3>Student List</h3>
+      <p className="recpass">Student Account Recovery <span   onClick={openModal}>Click Here!</span> </p>
 
        <div className="modalss">
           {showSignUpModal && (
@@ -104,10 +108,15 @@ const AuthDetails = () => {
             <Modal onClose={closeModal}>
             </Modal>
           )}
+          {showModal && (
+            <Modal onClose={closeModal}>
+              <ForgotPassword />
+            </Modal>
+          )}
       </div>
 
     </div>
   );
 };
 
-export default AuthDetails;
+export default StudentList;

@@ -4,6 +4,7 @@ import AuthDetails from "./components/AuthDetails.jsx";
 import StudentDetails from "./components/StudentDetails.jsx";
 import HomePage from './HomePage';
 import './App.css'
+import StudentList from "./components/StudentList.jsx";
 function App() {
  
   
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/" element={<HomePage/>} />
                     <Route path="/admin" element={<AuthDetails/>} />
                     <Route path="/student" element={<StudentDetails/>} />
+                    <Route path="/studentList" element={<StudentList/>} />
                     <Route path="/reset" element={<ForgotPassword/>} />
                 </Routes>
             </div>

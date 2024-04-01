@@ -131,7 +131,7 @@ const SignUp = () => {
                     </div>
                     <div className="inputBoxs">
                       <input className="semail-box" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                      <span>Enter your email</span>
+                      <span>Enter email</span>
                     </div>
                   <div style={{display: "flex"}}>
                       <div className="inputBoxs">
@@ -144,7 +144,7 @@ const SignUp = () => {
                       <input type={showPassword ? 'text' : 'password'} name="fname" value={confirmPassword} className="spw-box" onChange={(e) => setConfirmPassword(e.target.value)} required/>
                       <span>Confirm Password</span>
                     </div>
-                    <button type="submit"  className="signup-button"><b>Sign Up</b></button>    
+                    <button type="submit"  className="signup-button"><b>Create Account</b></button>    
                 </form>
               </div>
                 <p id="screated">{message}</p>

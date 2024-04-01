@@ -19,7 +19,7 @@ function ForgotPassword(){
     }
     return(
         <div className="App">
-            <h2>Recover Your Account</h2>
+            <h2>Account Recovery</h2>
             <div className="forgotForm">
             <form onSubmit={(e)=>handleSubmit(e)}>
             <div className="inputBox">
@@ -28,7 +28,7 @@ function ForgotPassword(){
           name="email"
           required
         />
-         <span>Enter your email</span>
+         <span>Enter email</span>
         </div>
                 <button className="fbutton">Submit</button>
             </form>

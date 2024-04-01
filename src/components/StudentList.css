@@ -1,0 +1,13 @@
+h3 {
+    color: #000;
+    margin: 5%;
+}
+.recpass {
+    margin: 5%;
+}
+.recpass span {
+    cursor: pointer;
+}
+.recpass span:hover {
+    text-decoration: underline;
+}
