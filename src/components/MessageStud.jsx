@@ -3,7 +3,7 @@ import { db, auth } from './auth/firebase';
 import { collection, addDoc, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import './MessageStud.css'
+import './MessageStud.css';
 
 const MessageStud = () => {
   const [newMessage, setNewMessage] = useState('');
@@ -14,7 +14,6 @@ const MessageStud = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [recipient, setRecipient] = useState('');
   const navigate = useNavigate();
-  const messageIds = new Set(); 
 
   const dashboard = () => {
     navigate('/student');
@@ -47,7 +46,7 @@ const MessageStud = () => {
         console.log('Sign out successful');
         navigate('/');
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error('Sign out error:', error));
   };
 
   useEffect(() => {
@@ -57,15 +56,11 @@ const MessageStud = () => {
       const receivedQuery = query(messagesRef, where('recipient', '==', user.uid), orderBy('createdAt', 'desc'));
 
       const handleSnapshot = (querySnapshot) => {
-        const newMessages = querySnapshot.docs
-          .map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-            createdAt: doc.data().createdAt?.toDate() || new Date(),
-          }))
-          .filter((msg) => !messageIds.has(msg.id)); 
-
-        newMessages.forEach((msg) => messageIds.add(msg.id)); 
+        const newMessages = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+          createdAt: doc.data().createdAt?.toDate() || new Date(),
+        }));
 
         setMessages((prevMessages) => [...newMessages, ...prevMessages]);
       };
@@ -100,10 +95,8 @@ const MessageStud = () => {
           senderName: user.displayName || 'Anonymous',
           recipient: recipient,
         };
-        const docRef = await addDoc(messagesRef, messageData);
+        await addDoc(messagesRef, messageData);
 
-    
-        messageIds.add(docRef.id);
         setNewMessage('');
         setRecipient('');
       } catch (error) {
@@ -146,13 +139,15 @@ const MessageStud = () => {
 
         <p>Admin UID:  DUlP7zw9fJa64Bmd2BOCCRdmyaD3</p>
         <div>
-          <input className='SDinput'
+          <input
+            className='SDinput'
             type="text"
             value={recipient}
             onChange={handleRecipientChange}
             placeholder="Recipient UID"
           /> <br/>
-          <input className='SDinput'
+          <input
+            className='SDinput'
             type="text"
             value={newMessage}
             onChange={handleMessageChange}

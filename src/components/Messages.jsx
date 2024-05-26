@@ -5,23 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import './AuthDetails.css';
 import Modal from './Modal.js';
 import SignUp from './auth/SignUp.jsx';
-import './StudentList.css';
-import './Messages.css'; // Importing CSS for messages
 import { collection, onSnapshot, query, where, orderBy, addDoc, Timestamp } from 'firebase/firestore';
+import './Messages.css'
 
 const Messages = () => {
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const navigate = useNavigate();
-  const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(null);
   const [replies, setReplies] = useState({});
   const [selectedSender, setSelectedSender] = useState(null);
 
   useEffect(() => {
-    // Get current user information and messages from Firestore
     const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -56,31 +53,9 @@ const Messages = () => {
       unsubscribeReplies();
     };
   }, []);
-  
-  const handleMessageChange = (e) => {
-    setNewMessage(e.target.value);
-  };
 
   const handleReplyChange = (e, senderId) => {
     setReplies({ ...replies, [senderId]: e.target.value });
-  };
-
-  const sendMessage = async () => {
-    if (newMessage.trim() !== '' && user) {
-      try {
-        const messagesRef = collection(db, 'messages');
-        await addDoc(messagesRef, {
-          text: newMessage,
-          createdAt: Timestamp.fromDate(new Date()),
-          sender: user.uid,
-          senderName: user.displayName || 'Anonymous', // Use displayName or 'Anonymous' if not available
-          recipient: 'DUlP7zw9fJa64Bmd2BOCCRdmyaD3',
-        });
-        setNewMessage('');
-      } catch (error) {
-        console.error('Error sending message:', error);
-      }
-    }
   };
 
   const sendReply = async (senderId) => {
