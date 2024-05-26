@@ -1,0 +1,74 @@
+/* Inbox Container */
+.inbox {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 400px; /* Fixed height for the inbox container */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+
+  .sender-name {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    width: 500px;
+  }
+  .sender-name:hover {
+    color: #007bff;
+  }
+  
+  /* Message Container Styling */
+  .message-container {
+    width: 500px; /* Fixed width for the message container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 300px; /* Default height for the message container */
+  }
+  
+ 
+  .message {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+
+  .my-message {
+    background-color: #e0f7fa;
+    align-self: flex-end;
+  }
+  
+
+  .reply-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+
+  .reply-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+
+  .reply-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+  .reply-button:hover {
+    background-color: #0056b3;
+  }
+  

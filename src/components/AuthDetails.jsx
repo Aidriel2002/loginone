@@ -6,7 +6,6 @@ import './AuthDetails.css';
 import Modal from './Modal.js';
 import SignUp from './auth/SignUp.jsx';
 
-
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -19,6 +18,9 @@ const AuthDetails = () => {
   };
   const studentListTab = () => {
     history('/studentList');
+  }
+  const messagesTab = () => {
+    history('/messages')
   }
   const dashboard = () => {
     history('/admin')
@@ -40,7 +42,7 @@ const AuthDetails = () => {
 
       } else {
         setAuthUser(null);
-
+        
         setShowDropdown(false);
       }
     });
@@ -70,6 +72,7 @@ const AuthDetails = () => {
             <p onClick={studentListTab}>Students</p>
             <p>Courses</p>
             <p>Subjects</p>
+            <p  onClick={messagesTab}>Messages</p>
             <p onClick={openSignUpModal}>Add Student</p>
           </div>       
           

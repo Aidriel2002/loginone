@@ -24,6 +24,9 @@ const StudentList = () => {
   const studentListTab = () => {
     history('/studentList');
   }
+  const messagesTab = () => {
+    history('/messages')
+  }
   const dashboard = () => {
     history('/admin')
   }
@@ -73,6 +76,7 @@ const StudentList = () => {
             <p onClick={studentListTab}>Students</p>
             <p>Courses</p>
             <p>Subjects</p>
+            <p onClick={messagesTab}>Messages</p>
             <p onClick={openSignUpModal}>Add Student</p>
           </div>       
           

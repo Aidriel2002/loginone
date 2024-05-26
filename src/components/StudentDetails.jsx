@@ -10,7 +10,13 @@ const StudentDetails = () => {
   const [authUser, setAuthUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useNavigate();
-
+  
+  const messagesTab = () => {
+    history('/messagestud')
+  }
+  const dashboard = () => {
+    history('/student')
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,13 +50,14 @@ const StudentDetails = () => {
     <div className="user-container">
       {authUser ? (
         <div className="user">
-          <h2>DW System</h2>
+          <h2 onClick={dashboard}>DW System</h2>
           
           <div className="navbtn">
             <p>Evaluation</p>
             <p>Registration</p>
             <p>Account Subledger</p>
             <p>Enlistment</p>
+            <p onClick={messagesTab}>Message</p>
             
           </div>    
 

@@ -5,6 +5,8 @@ import StudentDetails from "./components/StudentDetails.jsx";
 import HomePage from './HomePage';
 import './App.css'
 import StudentList from "./components/StudentList.jsx";
+import Messages from "./components/Messages.jsx";
+import MessageStud from "./components/MessageStud.jsx";
 function App() {
  
   
@@ -17,6 +19,8 @@ function App() {
                     <Route path="/admin" element={<AuthDetails/>} />
                     <Route path="/student" element={<StudentDetails/>} />
                     <Route path="/studentList" element={<StudentList/>} />
+                    <Route path="/messages" element={<Messages/>} />
+                    <Route path="/messagestud" element={<MessageStud/>} />
                     <Route path="/reset" element={<ForgotPassword/>} />
                 </Routes>
             </div>
